@@ -2,10 +2,10 @@ import React from 'react';
 import { randomValue } from '../utils/util';
 
 
-class InputElement extends React.Component {
+class Element extends React.Component {
   render() {
     const styles = {
-      width: `${randomValue({min: 100, max: 400})}px`,
+      width: `${randomValue({min: 100, max: 200})}px`,
       height: `${randomValue({min: 20, max: 30})}px`,
       borderWidth: `${randomValue({min: 0.5, max: 2})}px`,
       borderRadius: `${randomValue({max: 8})}px`,
@@ -15,13 +15,14 @@ class InputElement extends React.Component {
       // borderColor: randomValue({type: 'color'}),
     };
     return (
-      <div className="element-container" data-name="input">
-        <input style={styles}
-          placeholder={randomValue({type: 'string'})}
-        ></input>
+      <div className="element-container" data-name="select">
+        <select style={styles}
+        >
+          <option value="" disabled selected>{randomValue({type: 'string'})}</option>
+        </select>
       </div>
     );
   }
 }
 
-export default InputElement;
+export default Element;

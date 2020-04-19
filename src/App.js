@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
 
-import Input from './components/input';
+import RandomComponent from './components';
 
 function App() {
   return (
     <div className="App">
       {
-        [...Array(50)].map(() => <Input />)
+        [...Array(25)].map(() => <RandomComponent />)
       }
     </div>
   );

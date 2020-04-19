@@ -1,13 +1,13 @@
 
 function randomValue({ type, list, max, min }) {
   if(type === 'string') {
-    return randomChiString();
+    return randomChiString(max);
   }
   if(type === 'color') {
     return randomColor();
   }
   if (list) {
-    const index = Math.round(Math.random() * list.length);
+    const index = Math.floor(Math.random() * (list.length));
     return list[index];
   }
   if (max) {
