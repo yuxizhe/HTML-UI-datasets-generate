@@ -15,6 +15,9 @@ puppeteer 截图并生成标注信息
 ## 使用 Detectron2 训练后示意
 ![img](./out.png)
 
+## colab 训练notebook
+>https://github.com/yuxizhe/HTML-COCO-datasets-generate/blob/master/detectron2_html.ipynb
+
 ## script
 
 build :  `npm run build`
@@ -23,7 +26,7 @@ start : `npm run start`
 
 generate : `npm run generate`
 
-## 生成目录
+## 目录
 
 图片目录：`/pic`
 
@@ -33,7 +36,7 @@ generate : `npm run generate`
 
 ## 已经生成好的dataset
 
-pic.zip 3.7M
+pic.zip 3.9M
 
 50张 train 图
 10张 test 图

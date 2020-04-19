@@ -131,8 +131,8 @@ async function generate() {
   await execShellCommand(`rm -rf ${pathName}`);
   await execShellCommand(`mkdir ${pathName}`);
 
-  generateDatasets('train');
-  generateDatasets('test');
+  await generateDatasets('train');
+  await generateDatasets('test');
 }
 
 generate();
