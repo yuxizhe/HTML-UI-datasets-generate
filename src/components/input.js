@@ -8,7 +8,9 @@ class InputElement extends React.Component {
       width: `${randomValue({min: 50, max: 200})}px`,
       height: `${randomValue({min: 20, max: 30})}px`,
       borderWidth: `${randomValue({min: 1, max: 3})}px`,
+      borderRadius: `${randomValue({max: 8})}px`,
       borderStyle: 'solid',
+      padding: `${randomValue({max: 5})}px`,
       // color: randomValue({type: 'color'}),
       // borderColor: randomValue({type: 'color'}),
     };
