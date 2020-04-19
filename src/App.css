@@ -1,0 +1,9 @@
+.App {
+  margin: auto;
+  max-width: 650px;
+}
+
+.element-container {
+  display: inline-block;
+  margin: 10px;
+}
