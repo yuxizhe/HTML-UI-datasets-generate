@@ -1,5 +1,5 @@
 import React from 'react';
-import { randomValue } from '../utils/util';
+import { randomValue } from '../../utils/util';
 
 
 class Element extends React.Component {
@@ -11,7 +11,7 @@ class Element extends React.Component {
       borderRadius: `${randomValue({max: 8})}px`,
       borderStyle: 'solid',
       padding: `${randomValue({max: 5})}px`,
-      opacity: `${randomValue({min: 1, max: 3}) / 3}`,
+      // opacity: `${randomValue({min: 1, max: 3}) / 3}`,
       // color: randomValue({type: 'color'}),
       // borderColor: randomValue({type: 'color'}),
     };
@@ -20,7 +20,7 @@ class Element extends React.Component {
         <select style={styles}
         >
           <option value="" disabled selected>
-            {/* {randomValue({type: 'string'})} */}
+            {randomValue({max: 10}) > 5 ? '' : randomValue({type: 'string'})}
           </option>
         </select>
       </div>

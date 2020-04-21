@@ -7,7 +7,9 @@ const getPuth = function(dir) {
   return path.join(__dirname, dir);
 }
 // 存放 COCO 格式的样本数据
-const cocoDataset = {
+let cocoDataset = {};
+
+const cocoDatasetFormat = {
   info: {
     "year": 2020,
     "version": 1,
@@ -20,7 +22,8 @@ const cocoDataset = {
   annotations: [],
   categories: [],
 };
-const category = ['button', 'select', 'input', 'checkbox', 'text'];
+
+const category = ['button', 'select', 'input', 'checkbox'];
 
 let annotationId = 0;
 
@@ -43,12 +46,13 @@ async function generateImage(imageId) {
     elements.forEach((element) => {
       if (element.dataset.name) {
         const name = element.dataset.name;
-        const trueElement = element.firstChild;
+        // const trueElement = element.firstChild;
+        const trueElement = element;
         const height = trueElement.offsetHeight;
         const width = trueElement.offsetWidth;
         const x = trueElement.offsetLeft - appLeft;
         const y = trueElement.offsetTop - appTop;
-        
+
         annotationId++;
 
         const annotation = {
@@ -108,7 +112,9 @@ function execShellCommand(cmd) {
  }
 
 async function generateDatasets(type) {
-  const number = type === 'train' ? 100 : 10;
+  cocoDataset = JSON.parse(JSON.stringify(cocoDatasetFormat));
+  const number = (type === 'train') ? 50 : 10;
+  console.log(`generate ${type} datasets , number: ${number}`)
   for (let n = 0; n < number; n++) {
     await generateImage(n);
   }
@@ -124,7 +130,7 @@ async function generateDatasets(type) {
 
   const content = JSON.stringify(cocoDataset); 
   const file = path.join(__dirname, `../pic/${type}.json`); 
-  fs.writeFile(file, content, function(err) {
+  await fs.writeFile(file, content, function(err) {
       if (err) {
           return console.log(err);
       }
@@ -140,6 +146,7 @@ async function generate() {
   await execShellCommand(`mkdir ${pathName}`);
 
   await generateDatasets('train');
+  await generateDatasets('valid');
   await generateDatasets('test');
 
   await execShellCommand(`cp -r ${getPuth('../test')} ${pathName}`);

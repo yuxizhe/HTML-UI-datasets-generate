@@ -1,7 +1,7 @@
 import React from 'react';
 import { randomValue } from '../utils/util';
 
-import Text from './text';
+// import Text from './text';
 
 class InputElement extends React.Component {
   render() {
@@ -22,7 +22,7 @@ class InputElement extends React.Component {
       <div className="element-container" data-name="button">
         <button style={styles}
         >
-          <Text length='4' />
+          <span>{randomValue({type: 'string', max: 4 })}</span>
         </button>
       </div>
     );
