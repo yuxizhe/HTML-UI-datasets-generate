@@ -14,6 +14,9 @@ class Element extends React.Component {
       // color: randomValue({type: 'color'}),
       // borderColor: randomValue({type: 'color'}),
     };
+    // const styles2 = {
+
+    // }
     return (
       <div className="element-container" data-name="checkbox">
         <input style={styles} type='checkbox' checked={randomValue({list: [true, false]})}

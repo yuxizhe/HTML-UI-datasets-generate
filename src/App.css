@@ -1,6 +1,8 @@
 .App {
   margin: auto;
   max-width: 650px;
+  /* 换为黑白 */
+  -webkit-filter: grayscale(100%);
 }
 
 .element-container {

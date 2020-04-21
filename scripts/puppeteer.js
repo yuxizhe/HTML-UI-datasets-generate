@@ -3,6 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const { exec } = require('child_process')
 
+const getPuth = function(dir) {
+  return path.join(__dirname, dir);
+}
 // 存放 COCO 格式的样本数据
 const cocoDataset = {
   info: {
@@ -126,13 +129,15 @@ async function generateDatasets(type) {
 }
 
 async function generate() {
-  const pathName = path.join(__dirname, `../pic`); 
+  const pathName = getPuth('../pic'); 
 
   await execShellCommand(`rm -rf ${pathName}`);
   await execShellCommand(`mkdir ${pathName}`);
 
   await generateDatasets('train');
   await generateDatasets('test');
+
+  await execShellCommand(`cp -r ${getPuth('../test')} ${pathName}`);
 }
 
 generate();

@@ -12,11 +12,6 @@ puppeteer 截图并生成标注信息
 ## 样例
 ![img](./test.png)
 
-## 使用 Detectron2 训练后示意
-![img](./out.png)
-
-## colab 训练notebook
->https://github.com/yuxizhe/HTML-COCO-datasets-generate/blob/master/detectron2_html.ipynb
 
 ## script
 
@@ -37,6 +32,13 @@ generate : `npm run generate`
 ## 已经生成好的dataset
 
 pic.zip 3.9M
+>https://drive.google.com/uc?export=download&id=1XRBS9hxK4l1zMQuMNZuefa12r52yKwX2
 
 50张 train 图
 10张 test 图
+
+## colab 训练notebook
+>https://github.com/yuxizhe/HTML-COCO-datasets-generate/blob/master/detectron2_html.ipynb
+
+## 使用 Detectron2 训练后示意
+![img](./out.png)
