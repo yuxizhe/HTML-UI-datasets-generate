@@ -20,22 +20,23 @@ const cocoDataset = {
   annotations: [],
   categories: [],
 };
-const category = ['button', 'select', 'input', 'checkbox'];
+const category = ['button', 'select', 'input', 'checkbox', 'text'];
+
+let annotationId = 0;
 
 async function generateImage(imageId) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
 
-  await page.goto('http://127.0.0.1:7878')
+  await page.goto('http://127.0.0.1:9000')
 
-  const returnData = await page.evaluate((imageId, category) => {
+  const returnData = await page.evaluate((imageId, category, annotationId) => {
     const elements = document.querySelectorAll('.element-container');
     const appElement = document.querySelector('.App');
     const appTop = appElement.offsetTop;
     const appLeft = appElement.offsetLeft;
     const annotations = []
-    let annotationIndex = 0;
     const appHeight = appElement.offsetHeight;
     const appWidth = appElement.offsetWidth;
 
@@ -47,10 +48,11 @@ async function generateImage(imageId) {
         const width = trueElement.offsetWidth;
         const x = trueElement.offsetLeft - appLeft;
         const y = trueElement.offsetTop - appTop;
-        annotationIndex++;
+        
+        annotationId++;
 
         const annotation = {
-          "id": imageId * 100 + annotationIndex,
+          "id": annotationId,
           "image_id": imageId,
           "category_id": category.indexOf(name),
           "category_name": name,
@@ -64,9 +66,10 @@ async function generateImage(imageId) {
     return {
       annotations,
       appHeight,
-      appWidth
+      appWidth,
+      annotationId
     };
-  }, imageId, category);
+  }, imageId, category, annotationId);
 
   const imageTime = new Date().toISOString();
 
@@ -77,6 +80,8 @@ async function generateImage(imageId) {
     "id": imageId,
     "height": returnData.appHeight
   };
+
+  annotationId = returnData.annotationId;
 
   cocoDataset.images.push(image);
   cocoDataset.annotations = cocoDataset.annotations.concat(returnData.annotations);

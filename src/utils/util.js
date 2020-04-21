@@ -22,7 +22,7 @@ function randomChi() {
 }
 // 随机汉字串
 function randomChiString(length) {
-  const strLength = length || Math.round(Math.random() * 8);
+  const strLength = Math.round(Math.random() * (length || 8));
   let chiString = '';
   for(let i=0; i<strLength; i++){
     chiString += randomChi();

@@ -19,7 +19,9 @@ class Element extends React.Component {
       <div className="element-container" data-name="select">
         <select style={styles}
         >
-          <option value="" disabled selected>{randomValue({type: 'string'})}</option>
+          <option value="" disabled selected>
+            {/* {randomValue({type: 'string'})} */}
+          </option>
         </select>
       </div>
     );

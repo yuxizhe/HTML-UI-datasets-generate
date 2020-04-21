@@ -2,10 +2,14 @@
   margin: auto;
   max-width: 650px;
   /* 换为黑白 */
-  -webkit-filter: grayscale(100%);
+  /* -webkit-filter: grayscale(100%); */
 }
 
 .element-container {
   display: inline-block;
-  margin: 10px;
+  margin: 5px;
+}
+
+.no-margin {
+  margin: 0px;
 }

@@ -18,7 +18,7 @@ class InputElement extends React.Component {
     return (
       <div className="element-container" data-name="input">
         <input style={styles}
-          placeholder={randomValue({type: 'string'})}
+          // placeholder={randomValue({type: 'string'})}
         ></input>
       </div>
     );
