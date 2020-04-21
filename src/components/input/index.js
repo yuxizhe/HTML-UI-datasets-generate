@@ -15,10 +15,14 @@ class InputElement extends React.Component {
       // color: randomValue({type: 'color'}),
       // borderColor: randomValue({type: 'color'}),
     };
+    const imgStyles = {
+      width: `${randomValue({ min: 100, max: 500 })}px`,
+      // height: `${randomValue({ min: 20, max: 30 })}px`,
+    }
     return (
       <div className="element-container" data-name="input">
         {
-          randomValue({ max: 10 }) > 0 ?
+          randomValue({ max: 10 }) > 5 ?
             (
               // css 样式
             <input style={styles}
@@ -26,7 +30,7 @@ class InputElement extends React.Component {
             ></input>)
             : (
               // 图片
-              <p></p>
+              <img style={imgStyles} src={require(`./img/${Math.floor(Math.random(16))}.png`)} alt='input'></img>
             )
         }
       </div>

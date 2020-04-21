@@ -15,14 +15,29 @@ class Element extends React.Component {
       // color: randomValue({type: 'color'}),
       // borderColor: randomValue({type: 'color'}),
     };
+    const imgStyles = {
+      width: `${randomValue({min: 100, max: 200})}px`,
+      // height: `${randomValue({ min: 20, max: 30 })}px`,
+    }
+    const randomImg = require(`./img/${Math.floor(Math.random(22))}.png`)
     return (
       <div className="element-container" data-name="select">
-        <select style={styles}
-        >
-          <option value="" disabled selected>
-            {randomValue({max: 10}) > 5 ? '' : randomValue({type: 'string'})}
-          </option>
-        </select>
+        {
+          randomValue({ max: 10 }) > 5 ?
+            (
+              // css 样式
+              <select style={styles}
+              >
+                <option value="" disabled selected>
+                  {randomValue({max: 10}) > 5 ? '' : randomValue({type: 'string'})}
+                </option>
+              </select>)
+            : (
+              // 图片
+              <img style={imgStyles} src={randomImg} alt='input'></img>
+            )
+        }
+        
       </div>
     );
   }

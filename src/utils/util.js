@@ -12,6 +12,9 @@ function randomValue({ type, list, max, min }) {
   }
   if (max) {
     const mindata = min || 0
+    if (type === 'int') {
+      return Math.floor(Math.random() * (max - mindata) + mindata)
+    }
     return Math.random() * (max - mindata) + mindata
   }
 };
