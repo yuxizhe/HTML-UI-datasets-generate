@@ -27,11 +27,10 @@ const category = ['button', 'select', 'input', 'checkbox'];
 
 let annotationId = 0;
 
+let browser;
+let page;
+
 async function generateImage(imageId, type) {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-
-
   await page.goto('http://127.0.0.1:9000')
 
   const returnData = await page.evaluate((imageId, category, annotationId) => {
@@ -92,7 +91,6 @@ async function generateImage(imageId, type) {
 
   const app = await page.$('.App');
   await app.screenshot({ path: `./pic/${type}/${imageId}.png` });
-  await browser.close();
 }
 
 /**
@@ -113,7 +111,7 @@ function execShellCommand(cmd) {
 
 async function generateDatasets(type) {
   cocoDataset = JSON.parse(JSON.stringify(cocoDatasetFormat));
-  const number = (type === 'train') ? 50 : 10;
+  const number = (type === 'train') ? 100 : 10;
   console.log(`generate ${type} datasets , number: ${number}`)
   for (let n = 0; n < number; n++) {
     await generateImage(n, type);
@@ -148,11 +146,22 @@ async function generate() {
   await execShellCommand(`mkdir ${pathName}/test`);
   await execShellCommand(`mkdir ${pathName}/valid`);
 
+  browser = await puppeteer.launch();
+  page = await browser.newPage();
+  await page.setViewport({
+    width: 650,
+    height: 800,
+    deviceScaleFactor: 1,
+  });
+
   await generateDatasets('train');
   await generateDatasets('valid');
   await generateDatasets('test');
 
+  await browser.close();
+
   await execShellCommand(`cp -r ${getPuth('../test')} ${pathName}/crm`);
+  await execShellCommand(`rm pic.zip`);
   await execShellCommand(`zip -r -q pic.zip pic`);
   console.log(`生成压缩包 pic.zip`);
 }
