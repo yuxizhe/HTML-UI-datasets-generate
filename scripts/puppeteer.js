@@ -27,7 +27,7 @@ const category = ['button', 'select', 'input', 'checkbox'];
 
 let annotationId = 0;
 
-async function generateImage(imageId) {
+async function generateImage(imageId, type) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
@@ -78,9 +78,9 @@ async function generateImage(imageId) {
   const imageTime = new Date().toISOString();
 
   const image = {
-    "file_name": `${imageTime}.png`,
+    "file_name": `${imageId}.png`,
     "width": returnData.appWidth,
-    "url": `pic/${imageTime}.png`,
+    "url": `pic/${type}/${imageId}.png`,
     "id": imageId,
     "height": returnData.appHeight
   };
@@ -91,7 +91,7 @@ async function generateImage(imageId) {
   cocoDataset.annotations = cocoDataset.annotations.concat(returnData.annotations);
 
   const app = await page.$('.App');
-  await app.screenshot({ path: `./pic/${imageTime}.png` });
+  await app.screenshot({ path: `./pic/${type}/${imageId}.png` });
   await browser.close();
 }
 
@@ -116,7 +116,7 @@ async function generateDatasets(type) {
   const number = (type === 'train') ? 50 : 10;
   console.log(`generate ${type} datasets , number: ${number}`)
   for (let n = 0; n < number; n++) {
-    await generateImage(n);
+    await generateImage(n, type);
   }
   cocoDataset.categories = category.map((item,index) => {
     return {
@@ -136,7 +136,6 @@ async function generateDatasets(type) {
       }
       console.log(`${type} dataset 生成成功，地址：/pic/${type}.json`);
   });
-
 }
 
 async function generate() {
@@ -145,11 +144,17 @@ async function generate() {
   await execShellCommand(`rm -rf ${pathName}`);
   await execShellCommand(`mkdir ${pathName}`);
 
+  await execShellCommand(`mkdir ${pathName}/train`);
+  await execShellCommand(`mkdir ${pathName}/test`);
+  await execShellCommand(`mkdir ${pathName}/valid`);
+
   await generateDatasets('train');
   await generateDatasets('valid');
   await generateDatasets('test');
 
-  await execShellCommand(`cp -r ${getPuth('../test')} ${pathName}`);
+  await execShellCommand(`cp -r ${getPuth('../test')} ${pathName}/crm`);
+  await execShellCommand(`zip -r -q pic.zip pic`);
+  console.log(`生成压缩包 pic.zip`);
 }
 
 generate();

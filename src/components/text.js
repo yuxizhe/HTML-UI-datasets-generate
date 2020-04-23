@@ -13,9 +13,7 @@ class Element extends React.Component {
 
     // }
     return (
-      <div className="element-container no-margin" data-name="text">
-        <span style={styles}>{randomValue({type: 'string', max: this.props.length || 8 })}</span>{}
-      </div>
+      <span style={styles}>{randomValue({type: 'string', min: 5, max: this.props.length || 15 })}</span>
     );
   }
 }

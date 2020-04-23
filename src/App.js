@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       {
-        [...Array(25)].map(() => <RandomComponent />)
+        [...Array(20)].map(() => <RandomComponent />)
       }
     </div>
   );

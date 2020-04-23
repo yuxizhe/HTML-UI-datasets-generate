@@ -4,11 +4,11 @@ import Input from './input';
 import Button from './button';
 import Select from './select';
 import Checkbox from './checkbox';
-// import Text from './text';
+import Text from './text';
 
 import { randomValue } from '../utils/util';
 
-const components = [Button, Select, Input, Checkbox]
+const components = [Button, Select, Input, Checkbox, Text]
 
 class RandomComponent extends React.Component {
   render() {

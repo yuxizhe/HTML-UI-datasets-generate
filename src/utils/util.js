@@ -1,7 +1,11 @@
 
 function randomValue({ type, list, max, min }) {
+  const mindata = min || 0;
+  const maxdata = max || 8;
+  const length = Math.floor(Math.random() * (maxdata - mindata) + mindata);
+
   if(type === 'string') {
-    return randomChiString(max);
+    return randomChiString(length);
   }
   if(type === 'color') {
     return randomColor();
@@ -11,7 +15,7 @@ function randomValue({ type, list, max, min }) {
     return list[index];
   }
   if (max) {
-    const mindata = min || 0
+    
     if (type === 'int') {
       return Math.floor(Math.random() * (max - mindata) + mindata)
     }
@@ -25,7 +29,7 @@ function randomChi() {
 }
 // 随机汉字串
 function randomChiString(length) {
-  const strLength = Math.round(Math.random() * (length || 8));
+  const strLength = length;
   let chiString = '';
   for(let i=0; i<strLength; i++){
     chiString += randomChi();

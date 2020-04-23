@@ -1,15 +1,24 @@
 .App {
   margin: auto;
-  max-width: 650px;
+  max-width: 500px;
   /* 换为黑白 */
   /* -webkit-filter: grayscale(100%); */
 }
 
+.element-outer {
+  display: inline-flex;
+  align-items: center;
+}
+
 .element-container {
-  display: inline-block;
+  display: inline;
   margin: 5px;
 }
 
 .no-margin {
   margin: 0px;
 }
+
+/* input, select {
+  margin-left: 5px;
+} */

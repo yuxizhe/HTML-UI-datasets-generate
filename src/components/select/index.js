@@ -16,28 +16,32 @@ class Element extends React.Component {
       // borderColor: randomValue({type: 'color'}),
     };
     const imgStyles = {
-      width: `${randomValue({min: 100, max: 200})}px`,
-      // height: `${randomValue({ min: 20, max: 30 })}px`,
+      maxWidth: '200px',
+      maxHeight: '30px',
     }
-    const randomImg = require(`./img/${Math.floor(Math.random(22))}.png`)
     return (
-      <div className="element-container" data-name="select">
-        {
-          randomValue({ max: 10 }) > 5 ?
-            (
-              // css 样式
-              <select style={styles}
-              >
-                <option value="" disabled selected>
-                  {randomValue({max: 10}) > 5 ? '' : randomValue({type: 'string'})}
-                </option>
-              </select>)
-            : (
-              // 图片
-              <img style={imgStyles} src={randomImg} alt='input'></img>
-            )
-        }
-        
+      <div>
+        <div className="element-outer">
+          <span>{randomValue({ type: 'string', min: 4 })} : </span>
+          <span className="element-container" data-name="select">
+            {
+              randomValue({ max: 10 }) > 5 ?
+                (
+                  // css 样式
+                  <select style={styles}
+                  >
+                    <option value="" disabled selected>
+                      {randomValue({max: 10}) > 5 ? '' : randomValue({type: 'string'})}
+                    </option>
+                  </select>)
+                : (
+                  // 图片
+                  <img style={imgStyles} src={require(`./img/${Math.floor(Math.random() * 22)}.png`)} alt='input'></img>
+                )
+            }
+            
+          </span>
+        </div>
       </div>
     );
   }
