@@ -71,7 +71,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "start": "NODE_ENV=production node app.js",
-    "gene": "node scripts/puppeteer.js"
+    "coco": "node scripts/coco.js"
   },
   "eslintConfig": {
     "extends": "react-app"
